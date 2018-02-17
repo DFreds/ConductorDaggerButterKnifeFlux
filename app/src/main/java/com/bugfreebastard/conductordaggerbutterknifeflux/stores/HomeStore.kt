@@ -1,7 +1,11 @@
 package com.bugfreebastard.conductordaggerbutterknifeflux.stores
 
-import com.bugfreebastard.conductordaggerbutterknifeflux.actionscreators.HomeActions.Companion.BUTTON_TAPPED
-import com.bugfreebastard.conductordaggerbutterknifeflux.keys.HomeKeys.Companion.BUTTON_TEXT_KEY
+import com.bugfreebastard.conductordaggerbutterknifeflux.actionscreators.HomeActions.Companion.COUNTER_BUTTON_TAPPED
+import com.bugfreebastard.conductordaggerbutterknifeflux.actionscreators.HomeActions.Companion.NEXT_VIEW_BUTTON_TAPPED
+import com.bugfreebastard.conductordaggerbutterknifeflux.actionscreators.HomeActions.Companion.RESET_COUNT_BUTTON_TAPPED
+import com.bugfreebastard.conductordaggerbutterknifeflux.keys.HomeKeys.Companion.COUNTER_BUTTON_TEXT_KEY
+import com.bugfreebastard.conductordaggerbutterknifeflux.keys.HomeKeys.Companion.COUNTER_VALUE_KEY
+import com.bugfreebastard.conductordaggerbutterknifeflux.stores.HomeReactions.Companion.GO_TO_DETAIL_VIEW
 import com.bugfreebastard.conductordaggerbutterknifeflux.stores.HomeReactions.Companion.UPDATE_BUTTON_TEXT
 import com.nigelbrown.fluxion.Annotation.Action
 import com.nigelbrown.fluxion.Annotation.Store
@@ -19,10 +23,22 @@ class HomeStore @Inject constructor(flux: Flux) : FluxStore(flux) {
         registerActionSubscriber(this)
     }
 
-    @Action(actionType = BUTTON_TAPPED)
-    fun buttonTapped(action: FluxAction) {
+    @Action(actionType = COUNTER_BUTTON_TAPPED)
+    fun counterButtonTapped(action: FluxAction) {
         buttonTappedCount++
 
-        emitReaction(UPDATE_BUTTON_TEXT, BUTTON_TEXT_KEY, "Button tapped $buttonTappedCount times")
+        emitReaction(UPDATE_BUTTON_TEXT, COUNTER_BUTTON_TEXT_KEY, "Button tapped $buttonTappedCount times")
+    }
+
+    @Action(actionType = RESET_COUNT_BUTTON_TAPPED)
+    fun resetCountButtonTapped(action: FluxAction) {
+        buttonTappedCount = 0
+
+        emitReaction(UPDATE_BUTTON_TEXT, COUNTER_BUTTON_TEXT_KEY, "Button tapped $buttonTappedCount times")
+    }
+
+    @Action(actionType = NEXT_VIEW_BUTTON_TAPPED)
+    fun nextViewButtonTapped(action: FluxAction) {
+        emitReaction(GO_TO_DETAIL_VIEW, COUNTER_VALUE_KEY, buttonTappedCount)
     }
 }

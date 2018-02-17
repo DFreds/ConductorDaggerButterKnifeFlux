@@ -2,6 +2,7 @@ package com.bugfreebastard.conductordaggerbutterknifeflux.keys
 
 interface HomeKeys {
     companion object {
-        val BUTTON_TEXT_KEY = "button-text-key"
+        val COUNTER_BUTTON_TEXT_KEY = "counter-button-text-key"
+        val COUNTER_VALUE_KEY = "counter-value-key"
     }
 }
