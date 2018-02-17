@@ -1,7 +1,6 @@
 package com.bugfreebastard.conductordaggerbutterknifeflux.actionscreators
 
 import com.bugfreebastard.conductordaggerbutterknifeflux.actionscreators.HomeActions.Companion.COUNTER_BUTTON_TAPPED
-import com.bugfreebastard.conductordaggerbutterknifeflux.actionscreators.HomeActions.Companion.NEXT_VIEW_BUTTON_TAPPED
 import com.bugfreebastard.conductordaggerbutterknifeflux.actionscreators.HomeActions.Companion.RESET_COUNT_BUTTON_TAPPED
 import com.nigelbrown.fluxion.Flux
 import com.nigelbrown.fluxion.FluxActionCreator
@@ -14,9 +13,5 @@ class HomeActionsCreator @Inject constructor(flux: Flux) : FluxActionCreator(flu
 
     override fun resetCountButtonTapped() {
         emitAction(RESET_COUNT_BUTTON_TAPPED)
-    }
-
-    override fun nextViewButtonTapped() {
-        emitAction(NEXT_VIEW_BUTTON_TAPPED)
     }
 }

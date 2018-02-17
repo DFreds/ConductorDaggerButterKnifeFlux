@@ -1,11 +1,8 @@
 package com.bugfreebastard.conductordaggerbutterknifeflux.stores
 
 import com.bugfreebastard.conductordaggerbutterknifeflux.actionscreators.HomeActions.Companion.COUNTER_BUTTON_TAPPED
-import com.bugfreebastard.conductordaggerbutterknifeflux.actionscreators.HomeActions.Companion.NEXT_VIEW_BUTTON_TAPPED
 import com.bugfreebastard.conductordaggerbutterknifeflux.actionscreators.HomeActions.Companion.RESET_COUNT_BUTTON_TAPPED
 import com.bugfreebastard.conductordaggerbutterknifeflux.keys.HomeKeys.Companion.COUNTER_BUTTON_TEXT_KEY
-import com.bugfreebastard.conductordaggerbutterknifeflux.keys.HomeKeys.Companion.COUNTER_VALUE_KEY
-import com.bugfreebastard.conductordaggerbutterknifeflux.stores.HomeReactions.Companion.GO_TO_DETAIL_VIEW
 import com.bugfreebastard.conductordaggerbutterknifeflux.stores.HomeReactions.Companion.UPDATE_BUTTON_TEXT
 import com.nigelbrown.fluxion.Annotation.Action
 import com.nigelbrown.fluxion.Annotation.Store
@@ -18,6 +15,7 @@ import javax.inject.Inject
 class HomeStore @Inject constructor(flux: Flux) : FluxStore(flux) {
 
     var buttonTappedCount = 0
+        private set
 
     init {
         registerActionSubscriber(this)
@@ -35,10 +33,5 @@ class HomeStore @Inject constructor(flux: Flux) : FluxStore(flux) {
         buttonTappedCount = 0
 
         emitReaction(UPDATE_BUTTON_TEXT, COUNTER_BUTTON_TEXT_KEY, "Button tapped $buttonTappedCount times")
-    }
-
-    @Action(actionType = NEXT_VIEW_BUTTON_TAPPED)
-    fun nextViewButtonTapped(action: FluxAction) {
-        emitReaction(GO_TO_DETAIL_VIEW, COUNTER_VALUE_KEY, buttonTappedCount)
     }
 }

@@ -13,8 +13,6 @@ import com.bugfreebastard.conductordaggerbutterknifeflux.R
 import com.bugfreebastard.conductordaggerbutterknifeflux.actionscreators.HomeActionsCreator
 import com.bugfreebastard.conductordaggerbutterknifeflux.controllers.base.BaseController
 import com.bugfreebastard.conductordaggerbutterknifeflux.keys.HomeKeys.Companion.COUNTER_BUTTON_TEXT_KEY
-import com.bugfreebastard.conductordaggerbutterknifeflux.keys.HomeKeys.Companion.COUNTER_VALUE_KEY
-import com.bugfreebastard.conductordaggerbutterknifeflux.stores.HomeReactions.Companion.GO_TO_DETAIL_VIEW
 import com.bugfreebastard.conductordaggerbutterknifeflux.stores.HomeReactions.Companion.UPDATE_BUTTON_TEXT
 import com.bugfreebastard.conductordaggerbutterknifeflux.stores.HomeStore
 import com.nigelbrown.fluxion.Annotation.React
@@ -64,21 +62,14 @@ class HomeController : BaseController() {
 
     @OnClick(R.id.next_view_button)
     fun onNextViewButtonTapped() {
-        homeActionsCreator.nextViewButtonTapped()
+        router.pushController(RouterTransaction
+                .with(DetailController(homeStore.buttonTappedCount))
+                .pushChangeHandler(HorizontalChangeHandler())
+                .popChangeHandler(HorizontalChangeHandler()))
     }
 
     @React(reactionType = UPDATE_BUTTON_TEXT)
     fun updateButtonText(reaction: Reaction) {
         counterButton.text = reaction.get(COUNTER_BUTTON_TEXT_KEY)
-    }
-
-    @React(reactionType = GO_TO_DETAIL_VIEW)
-    fun goToDetailView(reaction: Reaction) {
-        val buttonTappedCount = reaction.get<Int>(COUNTER_VALUE_KEY)
-
-        router.pushController(RouterTransaction
-                .with(DetailController(buttonTappedCount))
-                .pushChangeHandler(HorizontalChangeHandler())
-                .popChangeHandler(HorizontalChangeHandler()))
     }
 }
