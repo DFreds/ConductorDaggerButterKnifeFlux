@@ -2,6 +2,6 @@ package com.bugfreebastard.conductordaggerbutterknifeflux.stores
 
 interface HomeReactions {
     companion object {
-        const val SHOW_TOAST = "show-toast"
+        const val UPDATE_BUTTON_TEXT = "show-toast"
     }
 }

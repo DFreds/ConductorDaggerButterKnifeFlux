@@ -18,9 +18,9 @@ abstract class BaseController : RefWatchingController {
     protected val title: String?
         get() = null
 
-    protected constructor() {}
+    protected constructor()
 
-    protected constructor(args: Bundle) : super(args) {}
+    protected constructor(args: Bundle) : super(args)
 
     override fun onAttach(view: View) {
         setTitle()

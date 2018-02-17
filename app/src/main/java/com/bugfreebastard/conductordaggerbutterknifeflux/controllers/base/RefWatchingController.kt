@@ -10,8 +10,8 @@ abstract class RefWatchingController : ButterKnifeController {
 
     private var hasExited: Boolean = false
 
-    protected constructor() {}
-    protected constructor(args: Bundle) : super(args) {}
+    protected constructor()
+    protected constructor(args: Bundle) : super(args)
 
     public override fun onDestroy() {
         super.onDestroy()

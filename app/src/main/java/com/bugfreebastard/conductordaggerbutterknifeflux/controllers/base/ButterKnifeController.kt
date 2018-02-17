@@ -13,8 +13,8 @@ abstract class ButterKnifeController : Controller {
 
     private var unbinder: Unbinder? = null
 
-    protected constructor() {}
-    protected constructor(args: Bundle) : super(args) {}
+    protected constructor()
+    protected constructor(args: Bundle) : super(args)
 
     protected abstract fun inflateView(inflater: LayoutInflater, container: ViewGroup): View
 
@@ -29,7 +29,7 @@ abstract class ButterKnifeController : Controller {
 
     override fun onDestroyView(view: View) {
         super.onDestroyView(view)
-        unbinder!!.unbind()
+        unbinder?.unbind()
         unbinder = null
     }
 
